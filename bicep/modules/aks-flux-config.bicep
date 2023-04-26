@@ -23,7 +23,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-1
     sourceKind: 'GitRepository'
     suspend: false
     gitRepository: {
-      url: 'https://github.com/Azure/gitops-flux2-kustomize-helm-mt'
+      url: 'https://github.com/adamhockemeyer/AKSLinuxAndWindowsGitOps'
       timeoutInSeconds: 600
       syncIntervalInSeconds: 600
       repositoryRef: {
@@ -33,14 +33,14 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-1
     }
     kustomizations: {
       infra: {
-        path: './infrastructure'
+        path: './flux-config/infrastructure'
         dependsOn: []
         timeoutInSeconds: 1200
         syncIntervalInSeconds: 600
         prune: true
       }
       apps: {
-        path: './apps/staging'
+        path: './flux-config/apps/staging'
         dependsOn: [
           'infra'
         ]
