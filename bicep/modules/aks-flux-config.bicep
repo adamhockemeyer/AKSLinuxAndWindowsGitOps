@@ -32,18 +32,18 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-1
 
     }
     kustomizations: {
-      infra: {
-        path: './flux-config/infrastructure'
-        dependsOn: []
-        timeoutInSeconds: 1200
-        syncIntervalInSeconds: 600
-        prune: true
-      }
+      // infra: {
+      //   path: './flux-config/infrastructure'
+      //   dependsOn: []
+      //   timeoutInSeconds: 1200
+      //   syncIntervalInSeconds: 600
+      //   prune: true
+      // }
       apps: {
         path: './flux-config/apps/staging'
-        dependsOn: [
-          'infra'
-        ]
+        // dependsOn: [
+        //   'infra'
+        // ]
         timeoutInSeconds: 1200
         syncIntervalInSeconds: 600
         retryIntervalInSeconds: 1200
