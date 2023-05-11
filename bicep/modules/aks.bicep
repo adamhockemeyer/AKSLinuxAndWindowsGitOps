@@ -28,6 +28,9 @@ param agentVMSize string = 'standard_d2s_v3'
 @description('The size of the Virtual Machine.')
 param agentWindowsVMSize string = 'standard_d2s_v3'
 
+@description('The tags to associate with the Managed Cluster resource.')
+param tags object = {}
+
 
 // @description('User name for the Linux Virtual Machines.')
 // param linuxAdminUsername string
@@ -48,6 +51,15 @@ resource aks 'Microsoft.ContainerService/managedClusters@2023-02-02-preview' = {
       networkPlugin: 'azure'
       loadBalancerSku: 'Standard'
       outboundType: 'loadBalancer'
+    }
+    addonProfiles: {
+      azureKeyvaultSecretsProvider: {
+        config: {
+          enableSecretRotation: 'true'
+          rotationPollInterval: '2m'
+        }
+        enabled: true
+      }
     }
     agentPoolProfiles: [
       {
@@ -79,7 +91,10 @@ resource aks 'Microsoft.ContainerService/managedClusters@2023-02-02-preview' = {
       upgradeChannel: 'stable'
     }
   }
+  tags: tags
 }
 
 output controlPlaneFQDN string = aks.properties.fqdn
 output clusterName string = aks.name
+output clusterPrincipalId string = aks.identity.principalId
+output azureKeyVaultSecretsProviderClientId string = aks.properties.addonProfiles.azureKeyvaultSecretsProvider.identity.clientId

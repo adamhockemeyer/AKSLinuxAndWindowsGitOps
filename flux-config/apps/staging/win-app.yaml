@@ -18,6 +18,9 @@ spec:
       - name: sample
         image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
         resources:
+          requests:
+            cpu: "0.5"
+            memory: "500M"
           limits:
             cpu: "1"
             memory: 800M
