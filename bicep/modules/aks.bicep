@@ -22,11 +22,11 @@ param agentCount int = 1
 @maxValue(100)
 param agentWindowsCount int = 1
 
-@description('The size of the Virtual Machine.')
-param agentVMSize string = 'standard_d2s_v3'
+@description('The size of the Virtual Machine for Linux nodes.')
+param agentVMSize string = 'standard_d4s_v3'
 
-@description('The size of the Virtual Machine.')
-param agentWindowsVMSize string = 'standard_d2s_v3'
+@description('The size of the Virtual Machine for Windows nodes.')
+param agentWindowsVMSize string = 'standard_d4s_v3'
 
 @description('The tags to associate with the Managed Cluster resource.')
 param tags object = {}
@@ -96,5 +96,5 @@ resource aks 'Microsoft.ContainerService/managedClusters@2023-02-02-preview' = {
 
 output controlPlaneFQDN string = aks.properties.fqdn
 output clusterName string = aks.name
-output clusterPrincipalId string = aks.identity.principalId
+output clusterPrincipalId string = aks.properties.identityProfile.kubeletidentity.objectId
 output azureKeyVaultSecretsProviderClientId string = aks.properties.addonProfiles.azureKeyvaultSecretsProvider.identity.clientId
