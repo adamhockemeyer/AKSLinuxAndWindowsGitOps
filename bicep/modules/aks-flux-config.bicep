@@ -60,7 +60,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-1
         prune: true
       }
       winforms: {
-        path: './flux-config/apps/staging/eshop-winforms'
+        path: './flux-config/apps/staging/eshop-webforms'
         dependsOn: [
           'infra'
         ]

@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eshop-modernized-mvc
+  name: eshop-modernized-wcfservice
   labels:
-    app: eshop-mvc
+    app: eshop-wfc
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eshop-mvc
+      app: eshop-wfcservice
   template:
     metadata:
-      name: eshop-mvc
+      name: eshop-wcfservice
       labels:
-        app: eshop-mvc
+        app: eshop-wcf
     spec:
       nodeSelector:
         "kubernetes.io/os": windows
       containers:
-      - name: eshop-mvc
-        image: acr54uvnxvfxeua6.azurecr.io/eshop/mvc:latest
+      - name: eshop-wcf
+        image: acr54uvnxvfxeua6.azurecr.io/eshop/wcfservice:latest
         resources:
           requests:
             cpu: "0.5"
@@ -34,11 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop-mvc-svc
+  name: eshop-wcfservice-svc
 spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
   selector:
-    app: eshop-mvc
+    app: eshop-wcfservice
