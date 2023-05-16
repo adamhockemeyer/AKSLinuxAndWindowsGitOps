@@ -32,21 +32,41 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-1
 
     }
     kustomizations: {
-      // infra: {
-      //   path: './flux-config/infrastructure'
-      //   dependsOn: []
-      //   timeoutInSeconds: 1200
-      //   syncIntervalInSeconds: 600
-      //   prune: true
-      // }
-      apps: {
-        path: './flux-config/apps/staging'
-        // dependsOn: [
-        //   'infra'
-        // ]
+      infra: {
+        path: './flux-config/infrastructure'
+        dependsOn: []
         timeoutInSeconds: 1200
         syncIntervalInSeconds: 600
-        retryIntervalInSeconds: 1200
+        prune: true
+      }
+      mvc: {
+        path: './flux-config/apps/staging/eshop-mvc'
+        dependsOn: [
+          'infra'
+        ]
+        timeoutInSeconds: 600
+        syncIntervalInSeconds: 600
+        retryIntervalInSeconds: 600
+        prune: true
+      }
+      wcf: {
+        path: './flux-config/apps/staging/eshop-wcf'
+        dependsOn: [
+          'infra'
+        ]
+        timeoutInSeconds: 600
+        syncIntervalInSeconds: 600
+        retryIntervalInSeconds: 600
+        prune: true
+      }
+      winforms: {
+        path: './flux-config/apps/staging/eshop-winforms'
+        dependsOn: [
+          'infra'
+        ]
+        timeoutInSeconds: 600
+        syncIntervalInSeconds: 600
+        retryIntervalInSeconds: 600
         prune: true
       }
     }
