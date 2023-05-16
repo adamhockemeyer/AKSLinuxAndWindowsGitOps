@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshop-modernized-mvc
+  labels:
+    app: eshop-mvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshop-mvc
+  template:
+    metadata:
+      name: eshop-mvc
+      labels:
+        app: eshop-mvc
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": windows
+      containers:
+      - name: eshop-mvc
+        image: acr54uvnxvfxeua6.azurecr.io/eshop/mvc:latest
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: "500M"
+          limits:
+            cpu: "1"
+            memory: 800M
+        ports:
+          - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop-mvc-svc
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: eshop-mvc
