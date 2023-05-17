@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eshop-modernized-wcfservice
   labels:
-    app: eshop-wfc
+    app: eshop-wfcservice
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
     metadata:
       name: eshop-wcfservice
       labels:
-        app: eshop-wcf
+        app: eshop-wfcservice
     spec:
       nodeSelector:
         "kubernetes.io/os": windows
