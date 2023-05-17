@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eshop-modernized-webforms
   labels:
-    app: eshop-winforms
+    app: eshop-webforms
 spec:
   replicas: 1
   selector:
@@ -34,11 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eshop-mvc-svc
+  name: eshop-webforms-svc
 spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
   selector:
-    app: eshop-mvc
+    app: eshop-webforms
