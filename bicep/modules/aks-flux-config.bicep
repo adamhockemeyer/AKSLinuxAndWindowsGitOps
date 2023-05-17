@@ -59,7 +59,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-1
         retryIntervalInSeconds: 600
         prune: true
       }
-      winforms: {
+      webforms: {
         path: './flux-config/apps/staging/eshop-webforms'
         dependsOn: [
           'infra'
