@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: eshop
 resources:
   - namespace.yaml
-  - mssql-server.yaml
