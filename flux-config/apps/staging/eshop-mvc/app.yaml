@@ -20,6 +20,7 @@ spec:
       containers:
       - name: eshop-mvc
         image: acr54uvnxvfxeua6.azurecr.io/eshop/mvc:latest
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "0.5"
@@ -29,6 +30,27 @@ spec:
             memory: 800M
         ports:
           - containerPort: 80
+        env:
+        - name: ConnectionString
+          value: "Server=sql-data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word"
+        - name: UseMockData
+          value: "True"
+        - name: UseCustomizationData
+          value: "False"
+        - name: UseAzureStorage
+          value: "False"
+        - name: StorageConnectionString
+          value: ""
+        - name: AppInsightsInstrumentationKey
+          value: ""
+        - name: UseAzureActiveDirectory
+          value: "False"
+        - name: AzureActiveDirectoryClientId
+          value: ""
+        - name: AzureActiveDirectoryTenant
+          value: ""
+        - name: PostLogoutRedirectUri
+          value: ""
 
 ---
 apiVersion: v1
