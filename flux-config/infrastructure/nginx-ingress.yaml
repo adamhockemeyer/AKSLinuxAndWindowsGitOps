@@ -25,7 +25,6 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version: "*"
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
