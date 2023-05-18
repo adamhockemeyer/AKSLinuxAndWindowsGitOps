@@ -34,6 +34,7 @@ spec:
     controller:
       service:
         type: "LoadBalancer"
-        annotations: "service.beta.kubernetes.io/azure-dns-label-name: eshop-staging"
+        annotations: 
+          service.beta.kubernetes.io/azure-dns-label-name: "eshop-staging"
     admissionWebhooks:
       enabled: false
