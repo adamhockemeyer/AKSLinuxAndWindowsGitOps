@@ -58,7 +58,7 @@ kind: Service
 metadata:
   name: eshop-mvc-svc
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - protocol: TCP
     port: 80
