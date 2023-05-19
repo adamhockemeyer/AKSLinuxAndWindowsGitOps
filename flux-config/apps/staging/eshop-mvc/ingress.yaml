@@ -10,7 +10,7 @@ spec:
   - host: eshop-staging.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /mvc
+      - path: /
         pathType: Prefix
         backend:
           service:
