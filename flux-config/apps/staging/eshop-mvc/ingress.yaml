@@ -4,41 +4,28 @@ metadata:
   name: eshop-mvc-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
+    #nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/app-root: /mvc
 spec:
   ingressClassName: nginx
   rules:
   - host: eshop-staging.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /mvc(/|$)(.*)
+      - path: /mvc
         pathType: Prefix
         backend:
           service:
             name: eshop-mvc-svc
-            port:
-              number: 80
-      - path: /webforms(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: eshop-webforms-svc
             port:
               number: 80
   - http:
       paths:
-      - path: /mvc(/|$)(.*)
+      - path: /mvc
         pathType: Prefix
         backend:
           service:
             name: eshop-mvc-svc
             port:
               number: 80
-      - path: /(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: eshop-mvc-svc
-            port:
-              number: 80   
