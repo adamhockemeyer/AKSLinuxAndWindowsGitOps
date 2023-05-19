@@ -7,10 +7,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: mvc.eshop-staging.eastus.cloudapp.azure.com
+  - host: eshop-staging.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /
+      - path: /mvc
         pathType: Prefix
         backend:
           service:
