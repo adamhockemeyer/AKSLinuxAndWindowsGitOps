@@ -11,14 +11,14 @@ spec:
   - host: eshop-staging.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /mvc
+      - path: /mvc(/|$)(.*)
         pathType: Prefix
         backend:
           service:
             name: eshop-mvc-svc
             port:
               number: 80
-      - path: /
+      - path: /(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -27,14 +27,14 @@ spec:
               number: 80
   - http:
       paths:
-      - path: /mvc
+      - path: /mvc(/|$)(.*)
         pathType: Prefix
         backend:
           service:
             name: eshop-mvc-svc
             port:
               number: 80
-      - path: /
+      - path: /(/|$)(.*)
         pathType: Prefix
         backend:
           service:
