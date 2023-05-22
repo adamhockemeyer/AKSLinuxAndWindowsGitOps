@@ -97,4 +97,4 @@ resource aks 'Microsoft.ContainerService/managedClusters@2023-02-02-preview' = {
 output controlPlaneFQDN string = aks.properties.fqdn
 output clusterName string = aks.name
 output clusterPrincipalId string = aks.properties.identityProfile.kubeletidentity.objectId
-output azureKeyVaultSecretsProviderClientId string = aks.properties.addonProfiles.azureKeyvaultSecretsProvider.identity.clientId
+output azureKeyVaultSecretsProviderPrincipalId string = aks.properties.addonProfiles.azureKeyvaultSecretsProvider.identity.objectId

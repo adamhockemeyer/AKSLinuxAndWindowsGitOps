@@ -57,7 +57,7 @@ module keyVaultRbac 'modules/keyvault-rbac.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     rbacSecretUserSps: [
-      aks.outputs.azureKeyVaultSecretsProviderClientId
+      aks.outputs.azureKeyVaultSecretsProviderPrincipalId
     ]
   }
 }
