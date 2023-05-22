@@ -31,8 +31,9 @@ spec:
         ports:
           - containerPort: 80
         env:
-        - name: ConnectionString
-          value: "Server=sql-data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word"
+        # Set by the secret provider class
+        # - name: ConnectionString
+        #   value: "Server=sql-data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word"
         - name: UseMockData
           value: "True"
         - name: UseCustomizationData
