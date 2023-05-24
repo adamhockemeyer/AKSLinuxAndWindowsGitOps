@@ -1,0 +1,45 @@
+name: Bicep to ARM
+on:
+  push:
+    paths:
+      - "bicep/**"
+      - "!bicep/azuredeploy.json"
+      - ".github/workflows/bicep-to-arm.yml"
+    branches: ["main"]
+  workflow_dispatch:
+
+env:
+  BICEP_PATH: ./bicep
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Bicep Build
+        uses: Azure/bicep-build-action@v1.0.0
+        with:
+          bicepFilePath: ${{ env.BICEP_PATH }}/main.bicep
+          outputFilePath: ${{ env.BICEP_PATH }}/azuredeploy.json
+      # ** Use below if you would like to validate the generated ARM template **    
+      # - name: Azure Login
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: Validate ARM Template
+      #   uses: azure/arm-deploy@v1
+      #   with:
+      #     scope: subscription
+      #     region: 'eastus'
+      #     template: ${{ env.BICEP_PATH }}/azuredeploy.json
+      #     deploymentMode: Validate
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "automation@github.com"
+
+          git add ./bicep/azuredeploy.json
+          git commit -m "Add generated ARM template"
+          git push --force
